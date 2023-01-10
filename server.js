@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 const pokemons = [
   {
@@ -49,7 +50,7 @@ app.post("/api/pokemons", (req, res) => {
   console.log("POST /api/pokemons", data);
   data.id = pokemons.length + 1;
   pokemons.push(data);
-  res.send(data);
+  res.redirect("/");
 });
 
 const port = process.env.PORT || 8080;
